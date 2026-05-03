@@ -446,11 +446,10 @@ function renderMain(){
 function switchTab(name){
   S.tab=name;
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
-  var tabs={'prono':0,'tabla':1,'admin':2,'pts':3};
-  var isAdmin=S.user.id==='__admin__';
-  var allTabs=document.querySelectorAll('.tab');
-  // Re-render para actualizar tabs
-  renderMain();
+  document.querySelectorAll('.tab').forEach(function(t){
+    if(t.getAttribute('onclick')&&t.getAttribute('onclick').indexOf(name)>=0)t.classList.add('on');
+  });
+  renderTab();
 }
 
 function renderTab(){
